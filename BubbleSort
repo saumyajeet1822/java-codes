@@ -1,0 +1,30 @@
+import java.util.Arrays;
+public class BubbleSort {
+    public static int[] BubbleSort (int[] numbers){
+        int n= numbers.length;
+        for(int i =0; i<n; i++){
+            for(int j =1; j<(numbers.length);j++){
+                if(numbers[j-1] > numbers[j]){
+                    // swap elements
+                    swap(j -1, j, numbers);
+                }
+            }
+        }
+        return numbers;// returning the final sorted array
+    }
+    public static void swap( int i, int j, int[]array){
+        int temp = array[i];
+        array[i]= array[j];
+        array[j]= temp;
+
+    }
+
+    public static void main(String[] args) {
+        int [] randomNumbers= {9,7,6,5,4,0,1,3};
+        int[]sortedNumbers;
+        sortedNumbers =BubbleSort(randomNumbers); //bubble sort
+        System.out.println(Arrays.toString(sortedNumbers));
+    }
+}
+
+// Saumyajeet Das
