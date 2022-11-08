@@ -1,0 +1,19 @@
+/*Question:  Write a Java program that takes two numbers as input and display the product of two numbers.
+Data:
+Input first number: 10
+Input second number: 2*/
+import java.util.Scanner;
+public class ProductofNumber{
+    public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
+
+        System.out.println("Please enter a Number:  ");
+        int n= sc.nextInt();
+
+        System.out.println("Please enter a Number:  ");
+        int n2= sc.nextInt();
+
+        System.out.println(n + "x" + n2 + "="+ n*n2);
+
+    }// Saumyajeet Das
+}
