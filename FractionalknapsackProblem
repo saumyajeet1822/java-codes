@@ -1,0 +1,69 @@
+package codes;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class FractionalKnapsack {
+
+    static class ItemValue {
+        Double valuePerUnitWeight;
+        double weight, value ;
+
+        public ItemValue(int wt, int val)
+        {
+            this.weight = wt;
+            this.value = val;
+            valuePerUnitWeight = new Double((double)val / (double)wt);
+        }
+    }
+
+
+    private static double getMaxValue(int[] weights, int[] values, int capacity)
+    {
+        ItemValue[] items = new ItemValue[weights.length];
+
+        for (int i = 0; i < weights.length; i++) {
+            items[i] = new ItemValue(weights[i], values[i]);
+        }
+
+        // sorting items by value;
+        Arrays.sort(items, new Comparator<ItemValue>() {
+            @Override
+            public int compare(ItemValue o1, ItemValue o2)
+            {
+                return o2.valuePerUnitWeight.compareTo(o1.valuePerUnitWeight);
+            }
+        });
+
+        double totalValue = 0d;
+
+        for (ItemValue i : items) {
+
+            int curWt = (int)i.weight;
+            int curVal = (int)i.value;
+
+            if (capacity >=curWt) {
+                capacity = capacity - curWt;
+                totalValue += curVal;
+            }
+            else {
+                double fraction
+                        = ((double)capacity / (double)curWt);
+                totalValue += (curVal * fraction);
+                break;
+            }
+        }
+
+        return totalValue;
+    }
+
+    public static void main(String[] args) {
+
+
+        int[] wt = { 10, 40, 20, 30 };
+        int[] val = { 60, 40, 100, 120 };
+        int capacity = 50;
+
+        System.out.println(getMaxValue(wt,val,capacity));
+    }
+}
