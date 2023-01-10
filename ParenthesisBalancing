@@ -1,0 +1,39 @@
+import java.util.Stack;
+
+public class ParenthesisBalancing {
+    public static void main(String[] args) {
+        System.out.println(isBalanced("{{[]}}"));
+        System.out.println(isBalanced("}{"));
+    }
+
+    public static boolean isBalanced(String s) {
+        return isBalanced(s.toCharArray());
+    }
+
+    private static boolean isBalanced(char[] brackets) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : brackets) {
+
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char bracket = stack.pop();
+                if (isMatching(bracket, c)) {
+                    continue;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    private static boolean isMatching(char brackets1, char bracket2) {
+        return((brackets1 =='('&& bracket2 ==')' )
+                || (brackets1 =='{' && bracket2=='}')
+                || (brackets1 =='[' && bracket2 ==']' ));
+    }
+}
